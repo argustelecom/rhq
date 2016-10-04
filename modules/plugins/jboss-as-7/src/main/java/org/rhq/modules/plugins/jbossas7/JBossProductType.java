@@ -36,7 +36,7 @@ public enum JBossProductType {
     JDG("JDG", "JBoss JDG 6", "JBoss Data Grid 6", "Data Grid"),
     JPP("JPP", "JBoss JPP 6", "JBoss Portal Platform 6", "Portal Platform"),
     SOA("SOA-P", "JBoss SOA-P 6", "Red Hat JBoss Fuse Service Works", "Red Hat JBoss Fuse Service Works"),
-    WILDFLY8("WildFly","WildFly 8" ,"WildFly Application Server 8" , "WildFly");
+    WILDFLY8("WildFly","WildFly 8" ,"WildFly Application Server 8" , "WildFly Full");
 
     public final String SHORT_NAME;
     public final String NAME;
@@ -73,7 +73,8 @@ public enum JBossProductType {
      */
     public static JBossProductType determineJBossProductType(File homeDir, String apiVersion) {
         try {
-            JBossProductType jBossProductType = determineJBossProductTypeViaProductConfFile(homeDir);
+		// ARGUS_CODE: kostd, TASK-73749, https://bugzilla.redhat.com/show_bug.cgi?id=1099187
+            JBossProductType jBossProductType = null;//determineJBossProductTypeViaProductConfFile(homeDir);
             if (jBossProductType==null) {
                 // Wildfly and The Server Formerly Known AS JBossAS share the same absence of a slot
                 // and thus have no product type. So we need to check differently
